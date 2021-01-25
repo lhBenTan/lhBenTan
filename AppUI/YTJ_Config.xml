@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StdValue>
+  <!-- 吸头数量选项 -->
+  <YTJ_XT_Nums>2</YTJ_XT_Nums>
+  <!-- 相机选择 -->
+  <YTJ_Camera>2</YTJ_Camera>
+</StdValue>

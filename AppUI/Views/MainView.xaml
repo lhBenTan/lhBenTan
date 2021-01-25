@@ -1,0 +1,468 @@
+﻿<Window
+    x:Class="AppUI.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:AdonisUI="clr-namespace:AdonisUI;assembly=WPF.UI"
+    xmlns:beh="clr-namespace:AppUI.Common.Behavior"
+    xmlns:conv="clr-namespace:AppUI.Common.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ikriv="clr-namespace:IKriv.Wpf"
+    xmlns:local="clr-namespace:AppUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:AppUI.Views.UserControls"
+    xmlns:vm="clr-namespace:AppUI.ViewModels"
+    xmlns:zui="clr-namespace:ZdfFlatUI;assembly=WPF.UI"
+    x:Name="_this"
+    Title="MainWindow"
+    d:DesignHeight="542"
+    d:DesignWidth="938"
+    Background="#2d2d30"
+    ResizeMode="NoResize"
+    WindowStartupLocation="Manual"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:MainViewModel x:Name="MainVM" />
+    </Window.DataContext>
+    <Window.Resources>
+        <conv:TotalAreaConv x:Key="taConv" />
+        <conv:CircularityConv x:Key="cirConv" />
+        <conv:ResultConv x:Key="retConv" />
+        <conv:BoolenConverter x:Key="boolenConv" />
+        <conv:AppModeConv x:Key="appModeConv" />
+        <conv:AppModeConvForBottom x:Key="'" />
+        <conv:AppModeVisableConv x:Key="appModeVisableConv" />
+        <conv:AppModeVisableUserConv x:Key="appModeVisableUserConv" />
+        <conv:AppModeControlConv x:Key="appModeControlConv" />
+        <conv:SysConfigModeConv x:Key="sysConfigModeConv" />
+        <conv:WindowsLocalLeftConv x:Key="windowsLocalLeftConv" />
+        <conv:WindowsLocalTopConv x:Key="windowsLocalTopConv" />
+        <conv:FullScreenConv x:Key="fullScreenConv" />
+
+    </Window.Resources>
+
+    <Window.WindowState>
+        <Binding Converter="{StaticResource fullScreenConv}" Path="SysConfig_Mode">
+            <Binding.Mode>
+                TwoWay
+            </Binding.Mode>
+        </Binding>
+    </Window.WindowState>
+    <Window.Left>
+        <Binding Converter="{StaticResource windowsLocalLeftConv}" Path="Windows_LocalLeft">
+            <Binding.Mode>
+                TwoWay
+            </Binding.Mode>
+        </Binding>
+    </Window.Left>
+    <Window.Top>
+        <Binding Converter="{StaticResource windowsLocalTopConv}" Path="Windows_LocalTop">
+
+            <Binding.Mode>
+                TwoWay
+            </Binding.Mode>
+        </Binding>
+    </Window.Top>
+
+    <Window.InputBindings>
+        <KeyBinding Key="F12" Command="{Binding CapturePicCommand}" />
+        <KeyBinding Key="F1" Command="{Binding StartPlayCommand}" />
+        <KeyBinding Key="F2" Command="{Binding StopPlayCommand}" />
+        <KeyBinding Key="F3" Command="{Binding Test2Command}" />
+    </Window.InputBindings>
+    <Grid Name="_MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="199*" />
+            <ColumnDefinition Width="125*"/>
+            <ColumnDefinition Width="116*" />
+            <ColumnDefinition Width="498*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="{Binding APP_MODE, Converter={StaticResource appModeControlConv}}" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <!--  Menu  -->
+        <Border
+            Grid.Row="0"
+            Grid.ColumnSpan="4"
+            VerticalAlignment="Center"
+            Background="#0A0A0A"
+            BorderBrush="DeepSkyBlue"
+            BorderThickness="0,0,0,0.5">
+            <Grid Width="{Binding ElementName=_this, Path=ActualWidth}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+                <Menu
+                    Grid.Column="0"
+                    Background="Transparent"
+                    FontSize="18">
+                    <MenuItem Header="操作">
+                        <MenuItem
+                            Command="{Binding MV_StartPlayCommand}"
+                            Header="启动"
+                            IsEnabled="{Binding IsStopping}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Width="16"
+                                    Height="16"
+                                    Margin="5,0,0,0"
+                                    Fill="#0e932e"
+                                    Stretch="Uniform"
+                                    Style="{StaticResource PlayIcon}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem
+                            Command="{Binding MV_StopPlayCommand}"
+                            Header="暂停"
+                            IsEnabled="{Binding IsPlaying}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Width="14"
+                                    Height="14"
+                                    Margin="5,0,0,0"
+                                    Fill="#ee5718"
+                                    Stretch="Uniform"
+                                    Style="{StaticResource StopIcon}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Command="{Binding MV_ExitCommand}" Header="退出">
+                            <MenuItem.Icon>
+                                <Path
+                                    Width="16"
+                                    Height="16"
+                                    Margin="5,0,0,0"
+                                    Fill="#d81e06"
+                                    Stretch="Uniform"
+                                    Style="{StaticResource ExitIcon}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="开发者权限">
+                        <MenuItem
+                            Command="{Binding DeveloperLoginCommand}"
+                            Header="登录权限"
+                            IsEnabled="{Binding IsDeveloperLogin, Converter={StaticResource boolenConv}}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Width="16"
+                                    Height="16"
+                                    Margin="5,0,0,0"
+                                    Fill="#0e932e"
+                                    Stretch="Uniform"
+                                    Style="{StaticResource DebugIcon}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem
+                            Command="{Binding DeveloperLogoutCommand}"
+                            CommandParameter=""
+                            Header="退出权限"
+                            IsEnabled="{Binding IsDeveloperLogin}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Width="16"
+                                    Height="16"
+                                    Margin="5,0,0,0"
+                                    Fill="#0e932e"
+                                    Stretch="Uniform"
+                                    Style="{StaticResource DebugIcon}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="配置">
+                        <MenuItem Command="{Binding SysConfigCommand}" Header="系统配置">
+                            <MenuItem.IsEnabled>
+                                <MultiBinding Converter="{StaticResource sysConfigModeConv}">
+                                    <Binding Path="IsDeveloperLogin" />
+                                    <Binding Path="SysConfig_Mode" />
+                                </MultiBinding>
+                            </MenuItem.IsEnabled>
+                            <MenuItem.Icon>
+                                <Path
+                                    Width="16"
+                                    Height="16"
+                                    Margin="5,0,0,0"
+                                    Fill="#ffffff"
+                                    Stretch="Uniform"
+                                    Style="{StaticResource SettingIcon}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+                <StackPanel
+                    Grid.ColumnSpan="2"
+                    Width="441"
+                    Margin="0,4"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <zui:FlatButton
+                        Width="100"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        Background="#252525"
+                        Command="{Binding MV_CameraSwitchCommand}"
+                        Content="换相机"
+                        FontSize="15" />
+                    <zui:FlatButton
+                        Width="100"
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        Background="#252525"
+                        Command="{Binding MV_TriggerrChanceCommand}"
+                        Content="连接"
+                        FontSize="15" />
+                    <TextBlock
+                        FontSize="16"
+                        Foreground="White"
+                        Text="模式切换" />
+                    <zui:ZComboBox
+                        Width="120"
+                        Margin="10,0,10,0"
+                        CornerRadius="0"
+                        SelectedIndex="{Binding APP_MODE}">
+                        <ComboBoxItem IsSelected="True">用户模式</ComboBoxItem>
+
+                        <ComboBoxItem IsEnabled="{Binding IsDeveloperLogin}">调试模式</ComboBoxItem>
+                    </zui:ZComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  Main area  -->
+        <Grid
+            x:Name="MainGrid"
+            Grid.Row="1"
+            Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>
+                        <MultiBinding Converter="{StaticResource appModeConv}">
+                            <Binding Path="APP_MODE" />
+                            <Binding Path="APP_MODE_ForConverter" />
+                        </MultiBinding>
+                    </ColumnDefinition.Width>
+                </ColumnDefinition>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="1.2*" />
+            </Grid.ColumnDefinitions>
+            <!--  left area  -->
+            <Grid Grid.Column="0" Background="#252526">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="176*" />
+                    <ColumnDefinition Width="37*" />
+                </Grid.ColumnDefinitions>
+                <uc:UC_OperatorView Grid.ColumnSpan="2" Margin="1,5,0.5,5" />
+            </Grid>
+            <!--  middle area  -->
+            <Grid Grid.Column="1" Background="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="606*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="13*" />
+                    <ColumnDefinition Width="152*" />
+                </Grid.ColumnDefinitions>
+
+                <Image
+                    x:Name="Imc_Player"
+                    Grid.ColumnSpan="5"
+                    Panel.ZIndex="1"
+                    RenderTransformOrigin="0.5,0.5"
+                    Source="{Binding ImSrc_test}"
+                    Stretch="Uniform">
+                    <Image.RenderTransform>
+                        <ScaleTransform ScaleY="-1" />
+                    </Image.RenderTransform>
+                    <Image.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ImageDoubleClickCommand}"
+                            CommandParameter="{Binding ElementName=MainGrid}"
+                            MouseAction="LeftDoubleClick" />
+                    </Image.InputBindings>
+                </Image>
+            </Grid>
+            <!--  Right area  -->
+
+            <Grid
+                Grid.Column="2"
+                VerticalAlignment="Stretch"
+                Background="#252526">
+
+                <zui:ZTabControl
+                    x:Name="Tab"
+                    Background="#252526"
+                    Foreground="Black"
+                    SelectedIndex="{Binding Mod_LC}"
+                    Type="Card">
+                    <!--#region Tab_组装-->
+                    <TabItem IsEnabled="{Binding IsDeveloperLogin}">
+                        <TabItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    Foreground="#ffffff"
+                                    Text="组装" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <Grid>
+                            <uc:GWUserMode Margin="1,5,0.5,5" Visibility="{Binding APP_MODE, Converter={StaticResource appModeVisableUserConv}}" />
+                            <uc:GWDevMode Margin="1,5,0.5,5" Visibility="{Binding APP_MODE, Converter={StaticResource appModeVisableConv}}" />
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem IsEnabled="{Binding IsDeveloperLogin}">
+                        <TabItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    Foreground="#ffffff"
+                                    Text="点胶" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <Grid>
+                            <uc:DJUserMode Margin="1,5,0.5,5" Visibility="{Binding APP_MODE, Converter={StaticResource appModeVisableUserConv}}" />
+                            <uc:DJDevMode Margin="1,5,0.5,5" Visibility="{Binding APP_MODE, Converter={StaticResource appModeVisableConv}}" />
+                        </Grid>
+
+                    </TabItem>
+                    <TabItem IsEnabled="{Binding IsDeveloperLogin}">
+                        <TabItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    Foreground="#ffffff"
+                                    Text="判胶" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <Grid>
+                            <uc:PJUserMode Margin="1,5,0.5,5" Visibility="{Binding APP_MODE, Converter={StaticResource appModeVisableUserConv}}" />
+                            <uc:PJDevMode Margin="1,5,0.5,5" Visibility="{Binding APP_MODE, Converter={StaticResource appModeVisableConv}}" />
+                        </Grid>
+                    </TabItem>
+                </zui:ZTabControl>
+            </Grid>
+        </Grid>
+        <TabControl
+            Grid.Row="2"
+            Grid.ColumnSpan="4"
+            Margin="0"
+            ItemContainerStyle="{StaticResource Eji.TabItemStyle}"
+            Style="{StaticResource Eji.TabControlStyle}"
+            TabStripPlacement="Left">
+            <TabItem
+                Width="24"
+                Height="55"
+                Margin="0,-2,0,0"
+                Padding="0,0,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            Foreground="#ffffff"
+                            RenderTransformOrigin="0.5,0.5"
+                            Text="控">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="90" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock
+                            Foreground="#ffffff"
+                            RenderTransformOrigin="0.5,0.5"
+                            Text="制">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="90" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock
+                            Foreground="#ffffff"
+                            RenderTransformOrigin="0.5,0.5"
+                            Text="台">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="90" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TextBox
+                    x:Name="ConsoleView"
+                    Grid.Row="2"
+                    Background="#0A0A0A"
+                    BorderBrush="#FF2D2D30"
+                    BorderThickness="0,0"
+                    DockPanel.Dock="Bottom"
+                    FontFamily="Consolas"
+                    FontSize="12"
+                    Foreground="White"
+                    HorizontalScrollBarVisibility="Auto"
+                    IsReadOnly="True"
+                    MaxLines="1000"
+                    Text="{Binding ConsoleText}"
+                    TextChanged="ConsoleView_TextChanged"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
+            </TabItem>
+        </TabControl>
+
+        <!--  Status bar  -->
+        <StatusBar
+            Grid.Row="3"
+            Grid.ColumnSpan="4"
+            Background="#0B6095">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0" Foreground="White">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5,0,0,0" Text="设备状态：" />
+                    <TextBlock
+                        Width="86"
+                        Margin="0,0,20,0"
+                        Text="{Binding DeviceStatus}" />
+                    <TextBlock Text="实时帧率：" />
+                    <TextBlock
+                        Width="70"
+                        Margin="0,0,20,0"
+                        Text="{Binding Windows_Local}" />
+                    <TextBlock Margin="0,0,20,0">
+                        <Run Text="算法耗时：" />
+                        <Run Text="{Binding ElapsedTime, StringFormat={}{0:f}}" />
+                        <Run Text=" 毫秒" />
+                    </TextBlock>
+                    <TextBlock Width="71" Margin="0,0,20,0">
+                        <Run Text="活动线程数：" />
+                        <Run Text="{Binding ActiveThreadNum, StringFormat={}{0}}" />
+                    </TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1" Foreground="White">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5,0,0,0" Text="在线设备：" />
+                    <TextBlock Margin="0,0,20,0" Text="{Binding MV_CameraNum}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem
+                Grid.Column="2"
+                Margin="120,0,-120,0"
+                Foreground="White">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5,0,0,0" Text="流程：" />
+                    <TextBlock Margin="0,0,20,0" Text="{Binding UserType_GW01}" />
+                    <TextBlock Margin="0,0,20,0" Text="{Binding UserType_GW02}" />
+                    <TextBlock Margin="5,0,0,0" Text="模式：" />
+                    <TextBlock Margin="0,0,20,0" Text="{Binding Mod_LC, StringFormat=Mod {0}}" />
+                </StackPanel>
+            </StatusBarItem>
+
+        </StatusBar>
+    </Grid>
+</Window>

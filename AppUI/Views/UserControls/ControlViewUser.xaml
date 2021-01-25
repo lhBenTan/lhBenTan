@@ -1,0 +1,78 @@
+﻿<UserControl
+    x:Class="AppUI.Views.UserControls.ControlViewUser"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:AppUI.Common.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AppUI.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:zui="clr-namespace:ZdfFlatUI;assembly=WPF.UI"
+    d:DesignHeight="300"
+    d:DesignWidth="250"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <conv:ViewStartNumConv x:Key="viewStartNumConv" />
+        <conv:ViewPlayingClourConv x:Key="viewPlayingClourConv" />
+
+    </UserControl.Resources>
+    <Grid
+        Grid.Column="2"
+        VerticalAlignment="Stretch"
+        Background="#252526">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <Viewbox
+            Grid.Row="0"
+            Margin="25,0,25,0"
+            HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Foreground="{Binding ViewPlaying, Converter={StaticResource viewPlayingClourConv}}">
+                    <Run Text="{Binding ViewPlaying}" />
+
+                </TextBlock>
+
+            </StackPanel>
+        </Viewbox>
+        <Viewbox
+            Grid.Row="1"
+            Margin="30,0,30,5"
+            HorizontalAlignment="Left">
+            <StackPanel>
+                <TextBlock Foreground="White">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource viewStartNumConv}">
+                            <Binding Path="View01" />
+                            <Binding Path="View02" />
+                            <Binding Path="View03" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Foreground="White">
+                    <Run Text="工位一：" />
+                    <Run Text="正常" />
+                </TextBlock>
+                <TextBlock Foreground="White">
+                    <Run Text="工位二：" />
+                    <Run Text="正常" />
+                </TextBlock>
+                <TextBlock Foreground="White">
+                    <Run Text="工位三：" />
+                    <Run Text="正常" />
+                </TextBlock>
+                <TextBlock Foreground="White">
+                    <Run Text="开启服务器：" />
+                   <Run Text="{Binding Server_OpenFlag}" />
+                </TextBlock>
+                <TextBlock Foreground="White">
+                    <Run Text="工位连接：" />
+
+                </TextBlock>
+
+            </StackPanel>
+        </Viewbox>
+
+    </Grid>
+</UserControl>

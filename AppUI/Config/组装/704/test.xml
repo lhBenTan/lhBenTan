@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StdValue>
+  <DGP_threshold>666</DGP_threshold>
+  <DGP_minRadiius>666</DGP_minRadiius>
+  <DGP_maxRadiius>666</DGP_maxRadiius>
+  <DGP_Ana_DefectDetection_2_01>666</DGP_Ana_DefectDetection_2_01>
+  <DGP_Ana_DefectDetection_2_02>666</DGP_Ana_DefectDetection_2_02>
+  <DGP_radiusThr>666</DGP_radiusThr>
+  <DGP_resultNum>666</DGP_resultNum>
+  <DGP_QKLength>666</DGP_QKLength>
+  <DGP_Config>C</DGP_Config>
+</StdValue>

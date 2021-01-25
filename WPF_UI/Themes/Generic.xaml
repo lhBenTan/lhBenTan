@@ -1,0 +1,34 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ZdfFlatUI">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WPF.UI;component/Controls/NumericUpDown/Themes/NumericUpDownStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/ToggleButton/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TabControl/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Accordion/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/ScrollViewer/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/IconTextBoxStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/TagTextBoxStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/ValidateTextBoxStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/TitleTextBoxStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/ZPasswordBox.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/NumbericTextBox.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/TextBox/Themes/IpTextBox.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Poptip/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Button/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Button/Themes/PathButtonStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Button/Themes/PathTextButtonStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Button/Themes/PathIconButtonStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Button/Themes/FlatButtonStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/CheckBox/Themes/DefaultCheckBoxStyle.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/CheckBox/Themes/ZCheckBox.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/GroupBox/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/ListView/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/ComboBox/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Slider/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/Loading/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/WPF.UI;component/Controls/AdonisWindow/Themes/AdonisWindow.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

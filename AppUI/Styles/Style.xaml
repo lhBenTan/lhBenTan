@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ControlStyles/MenuStyles.xaml" />
+        <ResourceDictionary Source="ControlStyles/DataGridStyle.xaml" />
+        <ResourceDictionary Source="ControlStyles/TabControlStyle.xaml" />
+        <ResourceDictionary Source="ControlStyles/RepeatButtonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style BasedOn="{StaticResource StandardMenu}" TargetType="Menu" />
+</ResourceDictionary>

@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC75FA84-18CF-49C3-895A-52737C194F8C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AppUI</RootNamespace>
+    <AssemblyName>Sunny Vision</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Sunny.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Mvvm, Version=18.2.0.0, Culture=neutral, PublicKeyToken=382ad28f6ae31f30, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpressMvvm.18.2.3\lib\net452\DevExpress.Mvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.UI, Version=18.2.0.0, Culture=neutral, PublicKeyToken=382ad28f6ae31f30, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpressMvvm.18.2.3\lib\net452\DevExpress.Mvvm.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unnoficial.Microsoft.Expression.Drawing.1.0.0\lib\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="MvCameraControl.Net, Version=3.0.0.2, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MVS\Development\DotNet\AnyCpu\MvCameraControl.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Wpf.2.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\Converters\AppModeControlConv.cs" />
+    <Compile Include="Common\Converters\AppModeConv.cs" />
+    <Compile Include="Common\Converters\AppModeConvForBottom.cs" />
+    <Compile Include="Common\Converters\AppModeVisableConv.cs" />
+    <Compile Include="Common\Converters\AppModeVisableUserConv.cs" />
+    <Compile Include="Common\Converters\BoolenConverter.cs" />
+    <Compile Include="Common\Converters\FullScreenConv.cs" />
+    <Compile Include="Common\Converters\OKNGColourConv.cs" />
+    <Compile Include="Common\Converters\ResultConv.cs" />
+    <Compile Include="Common\Converters\StatusBarConv.cs" />
+    <Compile Include="Common\Converters\SysConfigModeConv.cs" />
+    <Compile Include="Common\Converters\ViewModItemConv.cs" />
+    <Compile Include="Common\Converters\ViewPlayingClourConv.cs" />
+    <Compile Include="Common\Converters\ViewStartItemConv.cs" />
+    <Compile Include="Common\Converters\ViewStartNumConv.cs" />
+    <Compile Include="Common\Converters\WindowsLocalLeftConv.cs" />
+    <Compile Include="Common\Converters\WindowsLocalTopConv.cs" />
+    <Compile Include="Common\Converters\XT_LightConv.cs" />
+    <Compile Include="Common\Converters\YTJ_XTConv.cs" />
+    <Compile Include="Common\Converters\YTJ_XTItemsConv.cs" />
+    <Compile Include="Common\Converters\YTJ_XTSFConv.cs" />
+    <Compile Include="Common\InteropBitmapHelper.cs" />
+    <Compile Include="Common\Memory\MemHelper.cs" />
+    <Compile Include="Common\RowDefinitionObserver.cs" />
+    <Compile Include="Core\Annotations.cs" />
+    <Compile Include="Core\AsyncUDPServer.cs" />
+    <Compile Include="Core\AwaiterInterfaces.cs" />
+    <Compile Include="Core\DatabaseHelper.cs" />
+    <Compile Include="Core\AsyncTCPServer.cs" />
+    <Compile Include="Core\DispatcherAsyncOperation.cs" />
+    <Compile Include="Core\UIDispatcher.cs" />
+    <Compile Include="HikSDK\HikDecoderInterface.cs" />
+    <Compile Include="Core\AsyncTCPClient.cs" />
+    <Compile Include="Models\DVRModel.cs" />
+    <Compile Include="Models\FAImageModel.cs" />
+    <Compile Include="Models\GWParaModel.cs" />
+    <Compile Include="Models\YTJ_XT_ConfigModel.cs" />
+    <Compile Include="Styles\Themes\Window.Universal.xaml.cs">
+      <DependentUpon>Window.Universal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\UC_OperatorViewModel.cs" />
+    <Compile Include="Views\SubViews\DeveloperLoginView.xaml.cs">
+      <DependentUpon>DeveloperLoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubViews\DeveloperLoginViewLogin.xaml.cs">
+      <DependentUpon>DeveloperLoginViewLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubViews\LoadWindow.xaml.cs">
+      <DependentUpon>LoadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubViews\SysConfigView.xaml.cs">
+      <DependentUpon>SysConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubViews\SysConfig_YTJ.xaml.cs">
+      <DependentUpon>SysConfig_YTJ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ControlView.xaml.cs">
+      <DependentUpon>ControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ControlViewUser.xaml.cs">
+      <DependentUpon>ControlViewUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DJDevMode.xaml.cs">
+      <DependentUpon>DJDevMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\DJUserMode.xaml.cs">
+      <DependentUpon>DJUserMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\GWDevMode.xaml.cs">
+      <DependentUpon>GWDevMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\GWUserMode.xaml.cs">
+      <DependentUpon>GWUserMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ImageDealConfig.xaml.cs">
+      <DependentUpon>ImageDealConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ImageDealConfig_DGP.xaml.cs">
+      <DependentUpon>ImageDealConfig_DGP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ImageDealConfig_JP.xaml.cs">
+      <DependentUpon>ImageDealConfig_JP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ImageDealConfig_PJ.xaml.cs">
+      <DependentUpon>ImageDealConfig_PJ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MainViewUserControls.xaml.cs">
+      <DependentUpon>MainViewUserControls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\PJDevMode.xaml.cs">
+      <DependentUpon>PJDevMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\PJUserMode.xaml.cs">
+      <DependentUpon>PJUserMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SLDevMode.xaml.cs">
+      <DependentUpon>SLDevMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SLUserMode.xaml.cs">
+      <DependentUpon>SLUserMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\UC_FlowChartView.xaml.cs">
+      <DependentUpon>UC_FlowChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\UC_MessageBox.xaml.cs" />
+    <Compile Include="Views\UserControls\UC_OperatorView.xaml.cs">
+      <DependentUpon>UC_OperatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\YTJUserMode.xaml.cs">
+      <DependentUpon>YTJUserMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\YTJ_XT_DGP.xaml.cs">
+      <DependentUpon>YTJ_XT_DGP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\YTJ_XT_PJ.xaml.cs">
+      <DependentUpon>YTJ_XT_PJ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\YTJ_XT_BaseUserControls.xaml.cs">
+      <DependentUpon>YTJ_XT_BaseUserControls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\YTJ_XT_JP.xaml.cs">
+      <DependentUpon>YTJ_XT_JP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\YTJ_XT_JT.xaml.cs">
+      <DependentUpon>YTJ_XT_JT.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Styles\ControlStyles\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ControlStyles\RepeatButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ControlStyles\TabControlStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ControlStyles\MenuStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Svg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Themes\Window.Universal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Behavior\ScaleFontBehavior.cs" />
+    <Compile Include="Common\Converters\CircularityConv.cs" />
+    <Compile Include="Common\Converters\TotalAreaConv.cs" />
+    <Compile Include="Common\DllImport\CVAlgorithms.cs" />
+    <Compile Include="Common\ImageEx.cs" />
+    <Compile Include="Common\temp.cs" />
+    <Compile Include="Common\VisualHelper.cs" />
+    <Compile Include="Common\Converters\MathConverter.cs" />
+    <Compile Include="Core\HikHelper.cs" />
+    <Compile Include="HikSDK\CHCNetSDK.cs" />
+    <Compile Include="HikSDK\PlayCtrl.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\SubViews\DeveloperLoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SubViews\DeveloperLoginViewLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubViews\LoadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubViews\SysConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubViews\SysConfig_YTJ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ControlViewUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\DJDevMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\DJUserMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\GWDevMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\GWUserMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ImageDealConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ImageDealConfig_DGP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ImageDealConfig_JP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ImageDealConfig_PJ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\MainViewUserControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\PJDevMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\PJUserMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\SLDevMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\SLUserMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\UC_FlowChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\UC_MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\UC_OperatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YTJUserMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YTJ_XT_DGP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YTJ_XT_PJ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YTJ_XT_BaseUserControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YTJ_XT_JP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\YTJ_XT_JT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resource\iconfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\login.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SmartThreadPool\SmartThreadPool45.csproj">
+      <Project>{9901cc77-b854-4eea-b913-7be2566005c3}</Project>
+      <Name>SmartThreadPool45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF_UI\WPF_UI.csproj">
+      <Project>{448f2507-31c1-467a-9f8a-2f0b0ccb12e7}</Project>
+      <Name>WPF_UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Sunny.ico" />
+    <Resource Include="Resource\logo.png" />
+    <Content Include="Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="YTJ_Config.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

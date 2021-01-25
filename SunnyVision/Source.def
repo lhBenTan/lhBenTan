@@ -1,0 +1,10 @@
+;CVAlgorithms.dll
+;Autor:Eji
+LIBRARY SunnyVision.dll
+EXPORTS
+ReleaseMemUseFree			@1
+ReleaseMemUseDelete			@2
+CvpGray						@3
+Algorithm_GetContourArea	@4
+HikDevDetect				@5
+CaptureBmp					@6
