@@ -102,7 +102,8 @@ namespace AppUI.Core
             Connect();
             Thread.Sleep(20);
             AsyncSend(ReSendMsg);
-            //心跳
+            //
+
 
         }
        
