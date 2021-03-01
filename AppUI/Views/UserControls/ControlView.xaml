@@ -501,11 +501,13 @@
                                     Foreground="White"
                                     Text="开机启动广播" />
                                 <zui:FlatToggleButton
+                                    
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Margin="-20,0,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
+                                    IsChecked="{Binding GB_AutoStrat}"
                                     Style="{DynamicResource FlatToggleButtonStyle1}" />
                                 <TextBlock
                                     Grid.Row="1"
@@ -715,7 +717,7 @@
                                         Background="#FFF2F2FB"
                                         FontWeight="Bold"
                                         IsShowIcon="False"
-                                        Text="{Binding GB_Msg}"
+                                        Text="{Binding GBJZ_Msg}"
                                         TextAlignment="Right" />
                                 </Grid>
                                 <TextBlock
@@ -727,6 +729,7 @@
                                     Foreground="White"
                                     Text="开启广播" />
                                 <zui:FlatButton
+                                    x:Name="GBStartButton"
                                     Grid.Row="8"
                                     Grid.Column="1"
                                     Width="100"

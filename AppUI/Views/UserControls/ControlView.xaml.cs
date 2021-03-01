@@ -193,8 +193,9 @@ namespace AppUI.Views.UserControls
             ((DispatcherFrame)f).Continue = false;
             return null;
         }
-        
-       
+
+        public int GBStartFLag = 0;
+        public UdpClient GB_UDP;
         //开启所有服务器
         private void OpenServer_Click(object sender, RoutedEventArgs e)
         {
@@ -225,7 +226,7 @@ namespace AppUI.Views.UserControls
                     {
                         MainViewModel mainVM01 = (MainViewModel)loginView._MainV01.DataContext;
                         mainVM01.MV_StartPlay();
-                        Thread t1 = new Thread(o => Thread.Sleep(50));
+                        Thread t1 = new Thread(o => Thread.Sleep(200));
                         t1.Start(this);
                         while (t1.IsAlive)
                         { 
@@ -234,18 +235,19 @@ namespace AppUI.Views.UserControls
                         //Thread.Sleep(50);
                         mainVM01.YTJ_Start();
                         //Thread.Sleep(100);
-                        Thread t2 = new Thread(o => Thread.Sleep(100));
+                        Thread t2 = new Thread(o => Thread.Sleep(1000));
                         t2.Start(this);
                         while (t2.IsAlive)
                         {
                             DoEvents();
                         }
+                       
                     }
                     if (LoginVM.View02 == 0)
                     {
                         MainViewModel mainVM02 = (MainViewModel)loginView._MainV02.DataContext;
                         mainVM02.MV_StartPlay();
-                        Thread t1 = new Thread(o => Thread.Sleep(50));
+                        Thread t1 = new Thread(o => Thread.Sleep(200));
                         t1.Start(this);
                         while (t1.IsAlive)
                         {
@@ -254,18 +256,19 @@ namespace AppUI.Views.UserControls
                         //Thread.Sleep(50);
                         mainVM02.YTJ_Start();
                         //Thread.Sleep(100);
-                        Thread t2 = new Thread(o => Thread.Sleep(100));
+                        Thread t2 = new Thread(o => Thread.Sleep(1000));
                         t2.Start(this);
                         while (t2.IsAlive)
                         {
                             DoEvents();
                         }
+                    
                     }
                     if (LoginVM.View03 == 0)
                     {
                         MainViewModel mainVM03 = (MainViewModel)loginView._MainV03.DataContext;
                         mainVM03.MV_StartPlay();
-                        Thread t1 = new Thread(o => Thread.Sleep(50));
+                        Thread t1 = new Thread(o => Thread.Sleep(200));
                         t1.Start(this);
                         while (t1.IsAlive)
                         {
@@ -274,19 +277,20 @@ namespace AppUI.Views.UserControls
                         //Thread.Sleep(50);
                         mainVM03.YTJ_Start();
                         //Thread.Sleep(100);
-                        Thread t2 = new Thread(o => Thread.Sleep(100));
+                        Thread t2 = new Thread(o => Thread.Sleep(1000));
                         t2.Start(this);
                         while (t2.IsAlive)
                         {
                             DoEvents();
                         }
+                    
                     }
                     if (LoginVM.View04 == 0)
                     {
                         
                         MainViewModel mainVM04 = (MainViewModel)loginView._MainV04.DataContext;
                         mainVM04.MV_StartPlay();
-                        Thread t1 = new Thread(o => Thread.Sleep(50));
+                        Thread t1 = new Thread(o => Thread.Sleep(200));
                         t1.Start(this);
                         while (t1.IsAlive)
                         {
@@ -294,10 +298,21 @@ namespace AppUI.Views.UserControls
                         }
                         //Thread.Sleep(50);
                         mainVM04.YTJ_Start();
-                        
+                        Thread t2 = new Thread(o => Thread.Sleep(1000));
+                        t2.Start(this);
+                        while (t2.IsAlive)
+                        {
+                            DoEvents();
+                        }
                     }
                     LoginVM.ViewPlaying = "运行中";
-
+                    if (LoginVM.GB_AutoStrat == "True" && GBStartFLag == 0)
+                    {
+                        GBStartFLag = 1;
+                        try
+                        { GB_UDP = Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port); }
+                        catch{ };
+                    }
                 }
                 catch
                 {
@@ -343,40 +358,50 @@ namespace AppUI.Views.UserControls
             ConsoleView.ScrollToEnd();
         }
 
-        public void Connect(string LocalIP, string LocalPort, string SendIP, string SendPort)
+      
+        public UdpClient Connect(string LocalIP, string LocalPort, string SendIP, string SendPort)
         {
             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(LocalIP), int.Parse(LocalPort));
-
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse(SendIP), int.Parse(SendPort));
             UdpClient UDPclient = new UdpClient(ipe);
             DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(10) };
-
-          
-            string OKNums = "Null";
-            dt.Tick += delegate
+            try
             {
-                switch (GB_DataNumCom.SelectedIndex)
+                
+                string OKNums = "Null";
+                dt.Tick += delegate
                 {
-                    case 0: { OKNums = GB_DataText01.Text; }; break;
-                    case 1: { OKNums = GB_DataText02.Text; }; break;
-                    case 2: { OKNums = GB_DataText03.Text; }; break;
-                    case 3: { OKNums = GB_DataText04.Text; }; break;
-                    default:; break;
-                }
+                    switch (GB_DataNumCom.SelectedIndex)
+                    {
+                        case 0: { OKNums = GB_DataText01.Text; }; break;
+                        case 1: { OKNums = GB_DataText02.Text; }; break;
+                        case 2: { OKNums = GB_DataText03.Text; }; break;
+                        case 3: { }; break;
+                        default:; break;
+                    }
 
-                byte[] data_Send = new byte[128];
-                string OKNumMsg = "产出良品：" + OKNums;
-                data_Send = Encoding.Default.GetBytes(OKNumMsg);
-                UDPclient.Send(data_Send, data_Send.Length, endpoint);
+                    byte[] data_Send = new byte[128];
+                    string OKNumMsg = GB_DataText04.Text + "：产出良品：" + OKNums;
+                    data_Send = Encoding.Default.GetBytes(OKNumMsg);
+                    UDPclient.Send(data_Send, data_Send.Length, endpoint);
+                };
+
+                dt.Start();
+                return UDPclient;
+                //msgthr.Start("启动广播成功");
+            }
+            catch {
+                return UDPclient;//msgthr.Start("启动广播失败"); 
             };
-
-            dt.Start();
-            
         }
 
-        private void GB_Start_Click(object sender, RoutedEventArgs e)
+        //弹窗线程
+        Thread msgthr = new Thread(new ParameterizedThreadStart(msgtxt =>
         {
-           
+            MessageBox.Show((string)msgtxt, "通知", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+        }));
+        private void GB_Start_Click(object sender, RoutedEventArgs e)
+        {          
                 DependencyObject source = e.OriginalSource as DependencyObject;
                 while (source != null && source.GetType() != typeof(LoginView))
                     source = System.Windows.Media.VisualTreeHelper.GetParent(source);
@@ -384,8 +409,16 @@ namespace AppUI.Views.UserControls
                 {
                     LoginView loginView = source as LoginView;
                     LoginViewModel LoginVM = (LoginViewModel)loginView.DataContext;
+                try
+                {
+                    GB_UDP.Close();
+                    GB_UDP.Dispose();
+                    Thread.Sleep(50);
+                }
+                catch { }
 
-                    Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port);
+                GB_UDP = Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port);
+                msgthr.Start("启动广播成功");
                 }
             
             

@@ -252,6 +252,15 @@ namespace AppUI.ViewModels
                 config.Save("Config.xml");
             });
         }
+        public string GB_AutoStrat
+        {
+            get => GetProperty(() => GB_AutoStrat);
+            set => SetProperty(() => GB_AutoStrat, value, () =>
+            {
+                config.Descendants("GB_AutoStrat").ElementAt(0).SetValue(value);
+                config.Save("Config.xml");
+            });
+        }
         public string GB_Data01
         {
             get => GetProperty(() => GB_Data01);
@@ -417,6 +426,7 @@ namespace AppUI.ViewModels
             GB_Time = config.Descendants("GB_Time").ElementAt(0).Value;
             GB_Type = int.Parse(config.Descendants("GB_Type").ElementAt(0).Value);
             GB_DataNum = int.Parse(config.Descendants("GB_DataNum").ElementAt(0).Value);
+            GB_AutoStrat = config.Descendants("GB_AutoStrat").ElementAt(0).Value;
             ConfigName = config.Descendants("ConfigName").ElementAt(0).Value;
 
         }
