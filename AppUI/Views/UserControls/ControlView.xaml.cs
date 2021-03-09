@@ -310,8 +310,40 @@ namespace AppUI.Views.UserControls
                     {
                         GBStartFLag = 1;
                         try
-                        { GB_UDP = Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port); }
-                        catch{ };
+                        { GB_UDP = Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port);
+                          LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播自动启动成功" + Environment.NewLine}";
+                            DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(120) };
+                            dt.Tick += delegate
+                            {
+                                try
+                                {
+                                    try
+                                    {
+                                        GB_UDP.Close();
+                                        GB_UDP.Dispose();
+                                        Thread.Sleep(33);
+                                        LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播UDP关闭成功" + Environment.NewLine}";
+                                    }
+                                    catch { LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播UDP关闭失败" + Environment.NewLine}"; }
+                                    try
+                                    {
+                                        GB_UDP = Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port);
+                                        LoginVM.ConsoleText = "";
+                                        LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播启动成功" + Environment.NewLine}";
+                                    }
+
+                                    catch { LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播启动异常" + Environment.NewLine}"; }
+                                }
+                                catch { dt.Stop(); LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播自动重启异常" + Environment.NewLine}"; }
+
+                            };
+                            dt.Start();
+                        }
+                        catch{
+                            LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播自动启动异常"  + Environment.NewLine}";
+                        };
+
+                        
                     }
                 }
                 catch
@@ -357,17 +389,17 @@ namespace AppUI.Views.UserControls
             ConsoleView.SelectionStart = ConsoleView.Text.Length;
             ConsoleView.ScrollToEnd();
         }
-
-      
+    
         public UdpClient Connect(string LocalIP, string LocalPort, string SendIP, string SendPort)
         {
-            IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(LocalIP), int.Parse(LocalPort));
-            IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse(SendIP), int.Parse(SendPort));
-            UdpClient UDPclient = new UdpClient(ipe);
-            DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(10) };
+          
+            
             try
             {
-                
+                IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(LocalIP), int.Parse(LocalPort));
+                IPEndPoint endpoint = new IPEndPoint(IPAddress.Parse(SendIP), int.Parse(SendPort));
+                UdpClient UDPclient = new UdpClient(ipe);
+                DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(10) };
                 string OKNums = "Null";
                 dt.Tick += delegate
                 {
@@ -379,11 +411,14 @@ namespace AppUI.Views.UserControls
                         case 3: { }; break;
                         default:; break;
                     }
-
-                    byte[] data_Send = new byte[128];
-                    string OKNumMsg = GB_DataText04.Text + "：产出良品：" + OKNums;
-                    data_Send = Encoding.Default.GetBytes(OKNumMsg);
-                    UDPclient.Send(data_Send, data_Send.Length, endpoint);
+                    try
+                    {
+                        byte[] data_Send = new byte[128];
+                        string OKNumMsg = GB_DataText04.Text + "：产出良品：" + OKNums;
+                        data_Send = Encoding.Default.GetBytes(OKNumMsg);
+                        UDPclient.Send(data_Send, data_Send.Length, endpoint);
+                    }
+                    catch { dt.Stop(); }
                 };
 
                 dt.Start();
@@ -391,7 +426,7 @@ namespace AppUI.Views.UserControls
                 //msgthr.Start("启动广播成功");
             }
             catch {
-                return UDPclient;//msgthr.Start("启动广播失败"); 
+                return null;//msgthr.Start("启动广播失败"); 
             };
         }
 
@@ -401,7 +436,7 @@ namespace AppUI.Views.UserControls
             MessageBox.Show((string)msgtxt, "通知", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
         }));
         private void GB_Start_Click(object sender, RoutedEventArgs e)
-        {          
+        {           
                 DependencyObject source = e.OriginalSource as DependencyObject;
                 while (source != null && source.GetType() != typeof(LoginView))
                     source = System.Windows.Media.VisualTreeHelper.GetParent(source);
@@ -409,18 +444,33 @@ namespace AppUI.Views.UserControls
                 {
                     LoginView loginView = source as LoginView;
                     LoginViewModel LoginVM = (LoginViewModel)loginView.DataContext;
-                try
+                DispatcherTimer dt = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(120) };
+                dt.Tick += delegate
                 {
-                    GB_UDP.Close();
-                    GB_UDP.Dispose();
-                    Thread.Sleep(50);
-                }
-                catch { }
+                    try
+                    {
+                        try
+                        {
+                            GB_UDP.Close();
+                            GB_UDP.Dispose();
+                            Thread.Sleep(33);
+                            LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播UDP关闭成功" + Environment.NewLine}";
+                        }
+                        catch { LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播UDP关闭失败" + Environment.NewLine}"; }
+                        try
+                        {
+                            GB_UDP = Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port);
+                            LoginVM.ConsoleText = "";
+                            LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播启动成功" + Environment.NewLine}";
+                        }
 
-                GB_UDP = Connect(LoginVM.GB_Server_IP, LoginVM.GB_Server_Port, LoginVM.GB_UDP_IP, LoginVM.GB_UDP_Port);
-                msgthr.Start("启动广播成功");
+                        catch { LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播启动异常" + Environment.NewLine}"; }
+                    }
+                    catch { dt.Stop(); LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播自动重启异常" + Environment.NewLine}"; }
+                  
+                };
+                dt.Start();
                 }
-            
             
         }
 
