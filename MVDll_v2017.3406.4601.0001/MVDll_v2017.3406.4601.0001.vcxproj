@@ -79,7 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\AppUI\bin\Debug</OutDir>
+    <OutDir>C:\Users\Administrator\Desktop\demo</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -126,9 +126,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;MVDLLV2017340646010001_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;MVDLLV2017340646010001_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\项目\流水线视觉软件\opencv-3.4.6-x86\opencv-3.4.6-x86\install\include;C:\项目\流水线视觉软件\opencv-3.4.6-x86\opencv-3.4.6-x86\install\include\opencv;C:\项目\流水线视觉软件\opencv-3.4.6-x86\opencv-3.4.6-x86\install\include\opencv2;C:\项目\流水线视觉软件\Sunny vision_增加工业相机\Sunny vision_增加工业相机\Sunny vision\MVDll_v2017.3406.4601.0001;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\hk&amp;opencv\install\include;G:\hk&amp;opencv\install\include\opencv;G:\hk&amp;opencv\install\include\opencv2;C:\项目\流水线视觉软件\Sunny vision_增加工业相机\Sunny vision_增加工业相机\Sunny vision\MVDll_v2017.3406.4601.0001;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,7 +136,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>MVDll_v2017.3406.4601.0001.def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>C:\项目\流水线视觉软件\Release\Release;C:\项目\流水线视觉软件\opencv-3.4.6-x86\opencv-3.4.6-x86\install\x86\vc15\lib;C:\Program Files (x86)\MVS\Development\Libraries\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\项目\流水线视觉软件\Release\Release;G:\hk&amp;opencv\install\x86\vc15\lib;C:\Program Files (x86)\MVS\Development\Libraries\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>DLL4MV.lib;opencv_aruco346.lib;opencv_bgsegm346.lib;opencv_bioinspired346.lib;opencv_calib3d346.lib;opencv_ccalib346.lib;opencv_core346.lib;opencv_datasets346.lib;opencv_dnn346.lib;opencv_dnn_objdetect346.lib;opencv_dpm346.lib;opencv_face346.lib;opencv_features2d346.lib;opencv_flann346.lib;opencv_fuzzy346.lib;opencv_hfs346.lib;opencv_highgui346.lib;opencv_imgcodecs346.lib;opencv_imgproc346.lib;opencv_img_hash346.lib;opencv_line_descriptor346.lib;opencv_ml346.lib;opencv_objdetect346.lib;opencv_optflow346.lib;opencv_phase_unwrapping346.lib;opencv_photo346.lib;opencv_plot346.lib;opencv_reg346.lib;opencv_rgbd346.lib;opencv_saliency346.lib;opencv_shape346.lib;opencv_stereo346.lib;opencv_stitching346.lib;opencv_structured_light346.lib;opencv_superres346.lib;opencv_surface_matching346.lib;opencv_text346.lib;opencv_tracking346.lib;opencv_video346.lib;opencv_videoio346.lib;opencv_videostab346.lib;opencv_xfeatures2d346.lib;opencv_ximgproc346.lib;opencv_xobjdetect346.lib;opencv_xphoto346.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

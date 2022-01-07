@@ -346,11 +346,11 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
        
-                    <RowDefinition />
+                    <!--<RowDefinition />-->
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition />
+                    <!--<ColumnDefinition />-->
                 </Grid.ColumnDefinitions>
                 <Border
                     Grid.Row="0"
@@ -369,6 +369,7 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     BorderBrush="#3399FF"
+                    
                     BorderThickness="1">
                     <Grid Visibility="{Binding View02, Converter={StaticResource appModeVisableUserConv}}">
                         <uc:MainViewUserControls

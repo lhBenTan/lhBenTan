@@ -4,3 +4,4 @@ EXPORTS
 MV_Release @ 1
 img @ 2
 MV_EntryPoint @ 3
+Make_BMPResult @ 4

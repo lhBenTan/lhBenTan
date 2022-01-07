@@ -342,8 +342,6 @@ namespace AppUI.Views.UserControls
                         catch{
                             LoginVM.ConsoleText += $"{LoginVM.CmdTag + "广播自动启动异常"  + Environment.NewLine}";
                         };
-
-                        
                     }
                 }
                 catch
